@@ -1,0 +1,434 @@
+[
+    {
+        "word": "Abate",
+        "meaning": "To reduce in intensity or amount",
+        "examples": [
+            "The storm began to abate after hours of heavy rain.",
+            "His anger abated once he heard the full explanation."
+        ]
+    },
+    {
+        "word": "Benevolent",
+        "meaning": "Kind and generous",
+        "examples": [
+            "The benevolent old man donated his entire fortune to charity.",
+            "Her benevolent smile reassured the nervous child."
+        ]
+    },
+    {
+        "word": "Candid",
+        "meaning": "Honest and straightforward",
+        "examples": [
+            "She gave a candid opinion about the new policy.",
+            "His candid admission surprised everyone in the room."
+        ]
+    },
+    {
+        "word": "Deft",
+        "meaning": "Skillful and quick",
+        "examples": [
+            "The chef’s deft hands sliced the vegetables in seconds.",
+            "She handled the tricky situation with deft diplomacy."
+        ]
+    },
+    {
+        "word": "Ebullient",
+        "meaning": "Full of energy and enthusiasm",
+        "examples": [
+            "The ebullient crowd cheered as the team scored.",
+            "Her ebullient personality lit up the entire party."
+        ]
+    },
+    {
+        "word": "Fastidious",
+        "meaning": "Very attentive to detail",
+        "examples": [
+            "He was fastidious about keeping his desk organized.",
+            "Her fastidious nature made her an excellent editor."
+        ]
+    },
+    {
+        "word": "Gregarious",
+        "meaning": "Sociable and outgoing",
+        "examples": [
+            "The gregarious host made everyone feel welcome.",
+            "She’s so gregarious that she makes friends wherever she goes."
+        ]
+    },
+    {
+        "word": "Hapless",
+        "meaning": "Unfortunate or unlucky",
+        "examples": [
+            "The hapless traveler lost his luggage on the first day.",
+            "A hapless attempt at repair only worsened the damage."
+        ]
+    },
+    {
+        "word": "Impeccable",
+        "meaning": "Perfect, without any faults",
+        "examples": [
+            "Her impeccable manners impressed the guests.",
+            "The report was written with impeccable accuracy."
+        ]
+    },
+    {
+        "word": "Jovial",
+        "meaning": "Cheerful and friendly",
+        "examples": [
+            "His jovial laugh echoed through the room.",
+            "The jovial atmosphere made the event unforgettable."
+        ]
+    },
+    {
+        "word": "Keen",
+        "meaning": "Eager or enthusiastic",
+        "examples": [
+            "She has a keen interest in learning new languages.",
+            "He gave a keen observation that solved the puzzle."
+        ]
+    },
+    {
+        "word": "Lethargic",
+        "meaning": "Lacking energy, sluggish",
+        "examples": [
+            "After the meal, he felt lethargic and took a nap.",
+            "The hot weather made the dog unusually lethargic."
+        ]
+    },
+    {
+        "word": "Meticulous",
+        "meaning": "Showing great attention to detail",
+        "examples": [
+            "The artist was meticulous in every brushstroke.",
+            "His meticulous planning ensured the project’s success."
+        ]
+    },
+    {
+        "word": "Nostalgia",
+        "meaning": "A sentimental longing for the past",
+        "examples": [
+            "The old song filled her with nostalgia for her youth.",
+            "Visiting his hometown stirred up waves of nostalgia."
+        ]
+    },
+    {
+        "word": "Obsolete",
+        "meaning": "No longer in use or relevant",
+        "examples": [
+            "The old software became obsolete with the update.",
+            "Typewriters are now considered obsolete technology."
+        ]
+    },
+    {
+        "word": "Pensive",
+        "meaning": "Deep in thought, often with a hint of sadness",
+        "examples": [
+            "She gazed out the window with a pensive expression.",
+            "His pensive mood was evident after the news."
+        ]
+    },
+    {
+        "word": "Quaint",
+        "meaning": "Charmingly old-fashioned",
+        "examples": [
+            "The quaint village attracted many tourists.",
+            "She lived in a quaint little cottage by the sea."
+        ]
+    },
+    {
+        "word": "Resilient",
+        "meaning": "Able to recover quickly from difficulties",
+        "examples": [
+            "The resilient team bounced back after the loss.",
+            "Children are often more resilient than adults realize."
+        ]
+    },
+    {
+        "word": "Stoic",
+        "meaning": "Enduring pain or hardship without complaint",
+        "examples": [
+            "He remained stoic despite the harsh criticism.",
+            "Her stoic silence spoke volumes about her strength."
+        ]
+    },
+    {
+        "word": "Tenacious",
+        "meaning": "Determined and persistent",
+        "examples": [
+            "The tenacious athlete trained despite the injury.",
+            "Her tenacious spirit helped her overcome obstacles."
+        ]
+    },
+    {
+        "word": "Aesthetic",
+        "meaning": "Concerned with beauty or the appreciation of beauty",
+        "examples": [
+            "The room was decorated with an aesthetic appeal.",
+            "He admired the aesthetic qualities of the painting."
+        ]
+    },
+    {
+        "word": "Ambiguous",
+        "meaning": "Open to more than one interpretation; unclear",
+        "examples": [
+            "His ambiguous response left us confused.",
+            "The instructions were too ambiguous to follow."
+        ]
+    },
+    {
+        "word": "Ardent",
+        "meaning": "Very enthusiastic or passionate",
+        "examples": [
+            "She was an ardent supporter of the cause.",
+            "His ardent love for music was evident in his collection."
+        ]
+    },
+    {
+        "word": "Austere",
+        "meaning": "Severe or strict in manner; simple and unadorned",
+        "examples": [
+            "The austere room had only a bed and a chair.",
+            "His austere demeanor intimidated the students."
+        ]
+    },
+    {
+        "word": "Belligerent",
+        "meaning": "Hostile and aggressive",
+        "examples": [
+            "The belligerent customer yelled at the staff.",
+            "His belligerent attitude started the argument."
+        ]
+    },
+    {
+        "word": "Brevity",
+        "meaning": "Concise and exact use of words",
+        "examples": [
+            "The brevity of her speech made it impactful.",
+            "He appreciated the brevity of the instructions."
+        ]
+    },
+    {
+        "word": "Cacophony",
+        "meaning": "A harsh, discordant mixture of sounds",
+        "examples": [
+            "The cacophony of the city kept her awake.",
+            "A cacophony of horns greeted the morning rush."
+        ]
+    },
+    {
+        "word": "Capricious",
+        "meaning": "Impulsive and unpredictable",
+        "examples": [
+            "Her capricious decisions confused her friends.",
+            "The weather was capricious, changing every hour."
+        ]
+    },
+    {
+        "word": "Cerebral",
+        "meaning": "Intellectual rather than emotional",
+        "examples": [
+            "He preferred cerebral discussions over small talk.",
+            "The book appealed to a cerebral audience."
+        ]
+    },
+    {
+        "word": "Clandestine",
+        "meaning": "Kept secret or done secretively",
+        "examples": [
+            "They held a clandestine meeting at midnight.",
+            "The clandestine operation went unnoticed."
+        ]
+    },
+    {
+        "word": "Coherent",
+        "meaning": "Logical and consistent",
+        "examples": [
+            "Her argument was coherent and convincing.",
+            "The essay was well-written and coherent."
+        ]
+    },
+    {
+        "word": "Complacent",
+        "meaning": "Smug or uncritically satisfied with oneself",
+        "examples": [
+            "He became complacent after his early success.",
+            "Her complacent attitude annoyed her teammates."
+        ]
+    },
+    {
+        "word": "Conundrum",
+        "meaning": "A confusing and difficult problem or question",
+        "examples": [
+            "The puzzle presented a conundrum to the group.",
+            "Finding a solution was a real conundrum."
+        ]
+    },
+    {
+        "word": "Credible",
+        "meaning": "Able to be believed; convincing",
+        "examples": [
+            "Her story seemed credible to the jury.",
+            "He provided credible evidence for his claim."
+        ]
+    },
+    {
+        "word": "Cursory",
+        "meaning": "Hasty and not thorough or detailed",
+        "examples": [
+            "He gave the report a cursory glance.",
+            "The cursory inspection missed the flaws."
+        ]
+    },
+    {
+        "word": "Dauntless",
+        "meaning": "Fearless and determined",
+        "examples": [
+            "The dauntless explorer faced the storm.",
+            "Her dauntless spirit inspired others."
+        ]
+    },
+    {
+        "word": "Deleterious",
+        "meaning": "Harmful or damaging",
+        "examples": [
+            "Smoking has deleterious effects on health.",
+            "The policy had a deleterious impact on morale."
+        ]
+    },
+    {
+        "word": "Disparate",
+        "meaning": "Distinctly different in kind",
+        "examples": [
+            "They came from disparate backgrounds.",
+            "The two ideas were completely disparate."
+        ]
+    },
+    {
+        "word": "Docile",
+        "meaning": "Ready to accept control or instruction; submissive",
+        "examples": [
+            "The docile puppy followed every command.",
+            "He was surprisingly docile during the meeting."
+        ]
+    },
+    {
+        "word": "Efficacy",
+        "meaning": "The ability to produce a desired result",
+        "examples": [
+            "The vaccine’s efficacy was proven in trials.",
+            "She doubted the efficacy of the new plan."
+        ]
+    },
+    {
+        "word": "Elusive",
+        "meaning": "Difficult to find, catch, or achieve",
+        "examples": [
+            "The elusive thief evaded capture for years.",
+            "Success remained elusive despite her efforts."
+        ]
+    },
+    {
+        "word": "Eminent",
+        "meaning": "Famous and respected within a particular sphere",
+        "examples": [
+            "He was an eminent scientist in his field.",
+            "The eminent author gave a lecture."
+        ]
+    },
+    {
+        "word": "Enigma",
+        "meaning": "A person or thing that is mysterious or difficult to understand",
+        "examples": [
+            "She was an enigma to her classmates.",
+            "The case remained an enigma to the police."
+        ]
+    },
+    {
+        "word": "Ephemeral",
+        "meaning": "Lasting for a very short time",
+        "examples": [
+            "The beauty of the sunset was ephemeral.",
+            "Their joy was ephemeral, fading quickly."
+        ]
+    },
+    {
+        "word": "Erratic",
+        "meaning": "Unpredictable or inconsistent",
+        "examples": [
+            "His erratic behavior worried his friends.",
+            "The machine’s erratic performance caused delays."
+        ]
+    },
+    {
+        "word": "Exemplary",
+        "meaning": "Serving as an outstanding model or example",
+        "examples": [
+            "Her exemplary work earned her a promotion.",
+            "He showed exemplary courage in the crisis."
+        ]
+    },
+    {
+        "word": "Exuberant",
+        "meaning": "Full of energy, excitement, and cheerfulness",
+        "examples": [
+            "The exuberant child ran around the park.",
+            "Her exuberant greeting lifted everyone’s spirits."
+        ]
+    },
+    {
+        "word": "Fathom",
+        "meaning": "To understand after much thought",
+        "examples": [
+            "She couldn’t fathom why he left so suddenly.",
+            "He tried to fathom the complex problem."
+        ]
+    },
+    {
+        "word": "Fickle",
+        "meaning": "Changing frequently, especially in loyalties or affections",
+        "examples": [
+            "The fickle crowd switched sides quickly.",
+            "Her fickle tastes made planning difficult."
+        ]
+    },
+    {
+        "word": "Flamboyant",
+        "meaning": "Tending to attract attention with confidence and style",
+        "examples": [
+            "He wore a flamboyant suit to the party.",
+            "Her flamboyant personality stood out."
+        ]
+    },
+    {
+        "word": "Formidable",
+        "meaning": "Inspiring fear or respect through being powerful",
+        "examples": [
+            "The team faced a formidable opponent.",
+            "Her formidable intellect impressed everyone."
+        ]
+    },
+    {
+        "word": "Frugal",
+        "meaning": "Sparing or economical with money or food",
+        "examples": [
+            "He lived a frugal life to save money.",
+            "Her frugal habits surprised her wealthy friends."
+        ]
+    },
+    {
+        "word": "Garrulous",
+        "meaning": "Excessively talkative, especially on trivial matters",
+        "examples": [
+            "The garrulous neighbor never stopped chatting.",
+            "His garrulous speech bored the audience."
+        ]
+    },
+    {
+        "word": "Hackneyed",
+        "meaning": "Lacking significance through overuse; clichéd",
+        "examples": [
+            "The hackneyed phrase lost its impact.",
+            "His speech was full of hackneyed expressions."
+        ]
+    }
+]
