@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Builder</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            padding: 20px;
+            position: relative;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 15px;
+            color: #1e3c72;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .selection {
+            margin: 15px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: none;
+            background: #fff;
+            cursor: pointer;
+            color: #2a5298;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 120px;
+        }
+
+        .timer {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: #e63946;
+            font-size: 16px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+
+        .carousel {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            max-width: 350px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            perspective: 1000px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.3s ease;
+        }
+
+        .card.active {
+            opacity: 1;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: #fef9e7;
+        }
+
+        .card-front:hover, .card-back:hover {
+            background: #f9f9f9;
+        }
+
+        .word-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .word {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3c72;
+            text-align: center;
+            text-transform: capitalize;
+            word-wrap: break-word;
+        }
+
+        .speaker-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 22px;
+            color: #2a5298;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .speaker-btn:hover {
+            color: #f4a261;
+            transform: scale(1.1);
+        }
+
+        .meaning {
+            font-size: 16px;
+            color: #2a5298;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+            word-wrap: break-word;
+        }
+
+        .examples {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #f4a261;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background: #e08f44;
+            transform: translateY(-2px);
+        }
+
+        .instructions {
+            text-align: center;
+            margin-top: 15px;
+            color: #fef9e7;
+            font-size: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        #result-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        #result-modal h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        #result-bar-chart, #result-line-chart {
+            max-width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        #close-result {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #close-result:hover {
+            background: #1e3c72;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 0 5px;
+            }
+
+            .header {
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+
+            .selection {
+                gap: 10px;
+                margin: 10px 0;
+            }
+
+            select, button {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .carousel {
+                height: 300px;
+            }
+
+            .card {
+                max-width: 100%;
+                height: 100%;
+            }
+
+            .word {
+                font-size: 20px;
+            }
+
+            .speaker-btn {
+                font-size: 18px;
+            }
+
+            .meaning {
+                font-size: 14px;
+                margin: 10px 0;
+            }
+
+            .examples {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .timer {
+                font-size: 14px;
+                padding: 3px 6px;
+            }
+
+            .instructions {
+                font-size: 11px;
+            }
+
+            #result-modal {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            #result-modal h2 {
+                font-size: 1.2rem;
+            }
+
+            #result-bar-chart, #result-line-chart {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Vocabulary Builder</h1>
+        </div>
+        <div class="selection">
+            <select id="cardCount">
+                <option value="20">10 Cards</option>
+                <option value="20">20 Cards</option>
+                <option value="30">30 Cards</option>
+                <option value="40">40 Cards</option>
+                <option value="50">50 Cards</option>
+                <option value="74">74 Cards</option>
+            </select>
+            <button onclick="startCarousel()">Start</button>
+        </div>
+        <div class="timer" id="timer">10</div>
+        <div class="carousel" id="carousel"></div>
+        <div class="instructions">Use ← and → keys or swipe on mobile</div>
+    </div>
+    <div id="result-modal">
+        <h2>Exercise Results</h2>
+        <canvas id="result-bar-chart"></canvas>
+        <canvas id="result-line-chart"></canvas>
+        <button id="close-result" onclick="closeResult()">Close</button>
+    </div>
+
+    <script>
+        let vocabulary = [];
+        let currentCards = [];
+        let currentIndex = 0;
+        let timerInterval = null;
+        let onTimeCount = 0;
+        let delayedCount = 0;
+        let timePerCard = []; // Array to store time taken per card
+        let chartInstanceBar = null;
+        let chartInstanceLine = null;
+
+        fetch('vocabulary.json')
+            .then(response => response.json())
+            .then(data => {
+                vocabulary = data;
+            })
+            .catch(error => console.error('Error loading vocabulary:', error));
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function speakWord(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.volume = 1;
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function createCard(item) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="word-container">
+                            <div class="word">${item.word}</div>
+                            <button class="speaker-btn" aria-label="Pronounce ${item.word}">🔊</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="word-container">
+                            <div class="word">${item.word}</div>
+                            <button class="speaker-btn" aria-label="Pronounce ${item.word}">🔊</button>
+                        </div>
+                        <div class="meaning">${item.meaning}</div>
+                        <div class="examples">
+                            ${item.examples.map(ex => `<p>• ${ex}</p>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            let flippedManually = false;
+            let startTime = Date.now();
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('speaker-btn') && !card.classList.contains('flipped')) {
+                    card.classList.add('flipped');
+                    flippedManually = true;
+                    onTimeCount++;
+                    const timeTaken = (Date.now() - startTime) / 1000; // Time in seconds
+                    timePerCard.push(timeTaken);
+                }
+            });
+            const speakerButtons = card.querySelectorAll('.speaker-btn');
+            speakerButtons.forEach(btn => {
+                btn.addEventListener('click', () => speakWord(item.word));
+            });
+            let touchStartX = 0;
+            let touchEndX = 0;
+            card.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            card.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    if (!card.classList.contains('flipped')) {
+                        const timeTaken = (Date.now() - startTime) / 1000;
+                        timePerCard.push(timeTaken);
+                    }
+                    nextCard(flippedManually);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    prevCard();
+                }
+            }
+            return { card, flippedManually, startTime };
+        }
+
+        function startTimer(cardObj) {
+            let timeLeft = 10;
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.textContent = timeLeft;
+
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    if (!cardObj.card.classList.contains('flipped')) {
+                        cardObj.card.classList.add('flipped');
+                        delayedCount++;
+                        const timeTaken = (Date.now() - cardObj.startTime) / 1000;
+                        timePerCard.push(timeTaken);
+                        nextCard(true);
+                    }
+                }
+            }, 1000);
+        }
+
+        function showCard(index) {
+            const carousel = document.getElementById('carousel');
+            const currentCard = carousel.querySelector('.card');
+            if (currentCard) {
+                currentCard.classList.remove('active');
+                clearInterval(timerInterval);
+                setTimeout(() => {
+                    carousel.innerHTML = '';
+                    const cardObj = createCard(currentCards[index]);
+                    cardObj.card.classList.add('active');
+                    carousel.appendChild(cardObj.card);
+                    startTimer(cardObj);
+                }, 500);
+            } else {
+                const cardObj = createCard(currentCards[index]);
+                cardObj.card.classList.add('active');
+                carousel.appendChild(cardObj.card);
+                startTimer(cardObj);
+            }
+        }
+
+        function startCarousel() {
+            if (vocabulary.length === 0) return;
+            const cardCount = parseInt(document.getElementById('cardCount').value);
+            const carousel = document.getElementById('carousel');
+            carousel.innerHTML = '';
+            
+            onTimeCount = 0;
+            delayedCount = 0;
+            timePerCard = [];
+            const shuffledVocab = shuffleArray([...vocabulary]);
+            currentCards = shuffledVocab.slice(0, cardCount);
+            currentIndex = 0;
+
+            showCard(currentIndex);
+        }
+
+        function nextCard(wasFlippedManually) {
+            if (currentIndex < currentCards.length - 1) {
+                currentIndex++;
+                showCard(currentIndex);
+            } else if (currentIndex === currentCards.length - 1) {
+                showResult();
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCard(currentIndex);
+            }
+        }
+
+        function showResult() {
+            const totalCards = currentCards.length;
+            const resultModal = document.getElementById('result-modal');
+            const overlay = document.getElementById('overlay');
+
+            if (chartInstanceBar) chartInstanceBar.destroy();
+            if (chartInstanceLine) chartInstanceLine.destroy();
+
+            // Bar Chart: On Time vs Delayed
+            const barCtx = document.getElementById('result-bar-chart').getContext('2d');
+            chartInstanceBar = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['On Time', 'Delayed'],
+                    datasets: [{
+                        label: 'Cards Reviewed',
+                        data: [onTimeCount, delayedCount],
+                        backgroundColor: ['rgba(42, 82, 152, 0.8)', 'rgba(230, 57, 70, 0.8)'],
+                        borderColor: ['rgba(42, 82, 152, 1)', 'rgba(230, 57, 70, 1)'],
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: totalCards,
+                            ticks: { stepSize: 1, color: '#1e3c72' },
+                            grid: { color: 'rgba(0,0,0,0.1)' }
+                        },
+                        x: { ticks: { color: '#1e3c72' } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: `Total Cards: ${totalCards}`,
+                            color: '#1e3c72',
+                            font: { size: 16 }
+                        }
+                    },
+                    animation: { duration: 1000, easing: 'easeOutBounce' }
+                }
+            });
+
+            // Line Chart: Time per Card
+            const lineCtx = document.getElementById('result-line-chart').getContext('2d');
+            chartInstanceLine = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({ length: totalCards }, (_, i) => `Card ${i + 1}`),
+                    datasets: [{
+                        label: 'Time Taken (s)',
+                        data: timePerCard,
+                        borderColor: 'rgba(244, 162, 97, 0.8)', // Orange line
+                        backgroundColor: 'rgba(244, 162, 97, 0.2)', // Fill under line
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4 // Smooth curve
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 15, // Max time per card
+                            ticks: { stepSize: 3, color: '#1e3c72' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            title: { display: true, text: 'Time (seconds)', color: '#1e3c72' }
+                        },
+                        x: {
+                            ticks: { color: '#1e3c72', maxTicksLimit: 10 }, // Limit x-axis labels
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true, labels: { color: '#1e3c72' } },
+                        title: {
+                            display: true,
+                            text: 'Time Taken per Card',
+                            color: '#1e3c72',
+                            font: { size: 16 }
+                        }
+                    },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
+                }
+            });
+
+            resultModal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closeResult() {
+            const resultModal = document.getElementById('result-modal');
+            const overlay = document.getElementById('overlay');
+            resultModal.style.display = 'none';
+            overlay.style.display = 'none';
+            const carousel = document.getElementById('carousel');
+            carousel.innerHTML = '';
+            clearInterval(timerInterval);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextCard(false);
+            } else if (e.key === 'ArrowLeft') {
+                prevCard();
+            }
+        });
+    </script>
+</body>
+</html>
